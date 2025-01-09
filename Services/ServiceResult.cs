@@ -16,7 +16,7 @@ namespace App.Services
         public T? Data { get; set; }
 
         // Eğer işlem sırasında hatalar oluşursa, bunları bir liste olarak burada tutuyorum.
-        // Hata durumunda birden fazla mesajın gelebileceğini göz önünde bulundurarak liste yapısını kullandım.
+        // Hata durumunda birden fazla mesajın gelebileceğini göz önünde bulundurarak liste yapısını kullanıyorum.
         public List<string>? ErrorMessage { get; set; }
 
         // İşlemin başarılı olup olmadığını kontrol eden bir property. 
