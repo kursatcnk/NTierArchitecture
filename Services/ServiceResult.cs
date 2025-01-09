@@ -20,7 +20,7 @@ namespace App.Services
         public List<string>? ErrorMessage { get; set; }
 
         // İşlemin başarılı olup olmadığını kontrol eden bir property. 
-        // Eğer hata mesajı yoksa veya hata listesi boşsa, bu işlem başarılıdır.
+        // Eğer hata mesajı yoksa veya hata listesi boşsa, bu işlem olacak.
         [JsonIgnore]
         public bool IsSuccess => ErrorMessage == null || ErrorMessage.Count == 0;
 
