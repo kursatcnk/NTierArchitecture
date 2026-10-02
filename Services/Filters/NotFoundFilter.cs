@@ -38,11 +38,8 @@ namespace App.Services.Filters
             var actionName = context.ActionDescriptor.RouteValues["action"];
 
             var result = ServiceResult.Fail($"Data Bulunamamıştır.({entityName})({actionName}).");
+            // Result set edildikten sonra next() çağrılırsa MVC exception fırlatıyor (404 yerine 500 dönüyordu).
             context.Result = new NotFoundObjectResult(result);
-
-
-            await next();
-
         }
     }
 }
