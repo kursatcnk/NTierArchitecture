@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Veritabanı yedekleri ve dosyaları; kurulum migration + seed ile yapılıyor
+*.bak
+*.mdf
+*.ldf

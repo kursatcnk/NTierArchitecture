@@ -1,5 +1,6 @@
 using App.Repositories;
 using App.Repositories.Extentions;
+using App.Repositories.Seed;
 using App.Services;
 using App.Services.Extentions;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,14 @@ app.UseExceptionHandler(x => { });
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Bekleyen migration'ları uygulayıp veritabanı boşsa örnek veri ekliyorum, .bak geri yüklemeye gerek kalmıyor.
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        await context.Database.MigrateAsync();
+        await DevelopmentSeeder.SeedAsync(context);
+    }
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -42,3 +51,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// Entegrasyon testlerinde WebApplicationFactory<Program> kullanabilmek için.
+public partial class Program;
